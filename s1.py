@@ -91,6 +91,7 @@ st.markdown("""
 @st.cache_data # Added caching so it doesn't reload on every click
 def load_data():
     data1 = pd.read_csv('final_data.csv')
+    data1.drop_duplicates(inplace=True)
     cv = CountVectorizer(max_features=2000, stop_words='english')
     vector = cv.fit_transform(data1['tags_x']).toarray()
     similarity = cosine_similarity(vector)
